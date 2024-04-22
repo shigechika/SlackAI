@@ -164,7 +164,7 @@ const fetchAIAnswerText = (tiggerMsg) => {
 
     // 取得した回答を整形して返す
     const rawAnswerText = resPayloadObj.choices[0].message.content;
-    const trimedAnswerText = rawAnswerText.replace(/^\n+/, "");
+    const trimedAnswerText = rawAnswerText.replace(/^\n+/g, "");
     return trimedAnswerText;
   } catch (e) {
     // エラー発生時はエラーメッセージを返す
@@ -270,7 +270,7 @@ const doPost = (e) => {
     // 応答メッセージが存在しない場合、OKを返して処理を終了する
     if (!answerMsg) return ContentService.createTextOutput("OK");
     // Slackに応答メッセージを投稿する
-    slackPostMessage(channelId, answerMsg, { thread_ts: ts });
+    slackPostMessage(channelId, answerMsg, { thread_ts: ts, reply_broadcast: true });
     return ContentService.createTextOutput("OK");
   } catch (e) {
     console.error(e.stack, "応答エラーが発生");
