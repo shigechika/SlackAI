@@ -23,7 +23,7 @@ const fetchMsgsInThread = (channelId, threadTimestamp) => {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: "Bearer " + BOT_AUTH_TOKEN,
+    "Authorization": "Bearer " + BOT_AUTH_TOKEN,
   };
 
   const options = {
@@ -145,8 +145,8 @@ const fetchAIAnswerText = (tiggerMsg) => {
       method: "POST",
       headers: {
         // APIキーを設定する
-        "api-key": plamoApiKey,
-        "Content-type": "application/json"
+        "Authorization": "Bearer " + plamoApiKey,
+        "Content-type": "application/json",
       },
       payload: JSON.stringify(requestBody),
     });
